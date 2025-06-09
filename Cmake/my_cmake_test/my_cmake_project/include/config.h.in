@@ -1,0 +1,48 @@
+/**
+ * @file config.h.in
+ * @brief 项目配置头文件模板
+ * 
+ * 该文件是一个模板，在CMake配置过程中会被处理，
+ * 其中的@变量@会被替换为实际的CMake变量值。
+ * 处理后会生成config.h文件，包含项目的版本信息等配置数据。
+ */
+
+#ifndef CONFIG_H
+#define CONFIG_H
+
+/**
+ * 由CMake配置的版本信息
+ * 这些宏定义会在CMake配置阶段被替换为实际的项目信息
+ */
+
+/**
+ * @brief 项目名称
+ * 对应CMake中的PROJECT_NAME变量
+ */
+#define PROJECT_NAME "@PROJECT_NAME@"
+
+/**
+ * @brief 项目完整版本号（如"1.0.0"）
+ * 对应CMake中的PROJECT_VERSION变量
+ */
+#define PROJECT_VERSION "@PROJECT_VERSION@"
+
+/**
+ * @brief 项目主版本号（如"1"）
+ * 对应CMake中的PROJECT_VERSION_MAJOR变量
+ */
+#define PROJECT_VERSION_MAJOR @PROJECT_VERSION_MAJOR@
+
+/**
+ * @brief 项目次版本号（如"0"）
+ * 对应CMake中的PROJECT_VERSION_MINOR变量
+ */
+#define PROJECT_VERSION_MINOR @PROJECT_VERSION_MINOR@
+
+/**
+ * @brief 项目补丁版本号（如"0"）
+ * 对应CMake中的PROJECT_VERSION_PATCH变量
+ */
+#define PROJECT_VERSION_PATCH @PROJECT_VERSION_PATCH@
+
+#endif // CONFIG_H

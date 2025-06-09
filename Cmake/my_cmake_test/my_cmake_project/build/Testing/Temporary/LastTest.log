@@ -1,0 +1,24 @@
+Start testing: May 03 23:09 CST
+----------------------------------------------------------
+1/1 Testing: MathTest
+1/1 Test: MathTest
+Command: "/home/cyh/my_cmake_project/build/tests/test_math"
+Directory: /home/cyh/my_cmake_project/build/tests
+"MathTest" start time: May 03 23:09 CST
+Output:
+----------------------------------------------------------
+加法测试通过
+减法测试通过
+乘法测试通过
+除法测试通过
+除以零异常测试通过
+所有测试通过！
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"MathTest" end time: May 03 23:09 CST
+"MathTest" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: May 03 23:09 CST
