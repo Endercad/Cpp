@@ -1,0 +1,186 @@
+# gRPC项目编译方法
+
+本项目是一个基于gRPC的C++客户端-服务端通信示例，提供多种编译方式。
+
+## 前置依赖
+
+在编译之前，请确保系统已安装以下依赖：
+
+- **Protocol Buffers编译器**: `protoc`
+- **gRPC C++库**: `libgrpc++`
+- **gRPC插件**: `grpc_cpp_plugin`
+- **pkg-config**: 用于获取编译和链接标志
+
+### 检查依赖是否安装
+```bash
+# 检查protoc
+protoc --version
+
+# 检查gRPC插件
+which grpc_cpp_plugin
+
+# 检查pkg-config支持
+pkg-config --exists protobuf grpc++ && echo "依赖OK" || echo "依赖缺失"
+```
+
+## 一：使用Makefile编译（推荐）
+
+项目提供了Makefile，这是最简单的编译方式：
+
+### 1. 编译所有目标
+```bash
+make
+```
+此命令会自动：
+- 从 `mathtest.proto` 生成 Protocol Buffers 代码
+- 从 `mathtest.proto` 生成 gRPC 服务代码  
+- 编译客户端和服务端可执行文件
+
+### 2. 单独编译客户端或服务端
+```bash
+# 只编译客户端
+make client
+
+# 只编译服务端  
+make server
+```
+
+### 3. 清理生成的文件
+```bash
+make clean
+```
+
+## 二：使用命令行手动编译
+
+如果需要更细粒度的控制，可以手动执行编译步骤：
+
+### 步骤1：生成Protocol Buffers代码
+```bash
+protoc --cpp_out=. mathtest.proto
+```
+生成文件：`mathtest.pb.h`, `mathtest.pb.cc`
+
+### 步骤2：生成gRPC服务代码
+```bash
+protoc --grpc_out=. --plugin=protoc-gen-grpc=`which grpc_cpp_plugin` mathtest.proto
+```
+生成文件：`mathtest.grpc.pb.h`, `mathtest.grpc.pb.cc`
+
+### 步骤3：编译对象文件
+```bash
+# 获取编译标志
+CPPFLAGS=`pkg-config --cflags protobuf grpc`
+CXXFLAGS="-std=c++11"
+
+# 编译Protocol Buffers对象文件
+g++ $CPPFLAGS $CXXFLAGS -c mathtest.pb.cc -o mathtest.pb.o
+
+# 编译gRPC对象文件
+g++ $CPPFLAGS $CXXFLAGS -c mathtest.grpc.pb.cc -o mathtest.grpc.pb.o
+
+# 编译服务端对象文件
+g++ $CPPFLAGS $CXXFLAGS -c server.cc -o server.o
+
+# 编译客户端对象文件
+g++ $CPPFLAGS $CXXFLAGS -c client.cc -o client.o
+```
+
+### 步骤4：链接生成可执行文件
+```bash
+# 获取链接标志
+LDFLAGS="-L/usr/local/lib `pkg-config --libs protobuf grpc++` -Wl,--no-as-needed -lgrpc++_reflection -Wl,--as-needed -ldl"
+
+# 链接服务端
+g++ mathtest.pb.o mathtest.grpc.pb.o server.o $LDFLAGS -o server
+
+# 链接客户端
+g++ mathtest.pb.o mathtest.grpc.pb.o client.o $LDFLAGS -o client
+```
+
+## 三：使用CMake编译
+
+创建 `CMakeLists.txt` 文件进行CMake编译：
+
+```cmake
+cmake_minimum_required(VERSION 3.10)
+project(grpc_example)
+
+set(CMAKE_CXX_STANDARD 11)
+
+# 查找依赖
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(PROTOBUF REQUIRED protobuf)
+pkg_check_modules(GRPC REQUIRED grpc++)
+
+# 查找protoc和grpc插件
+find_program(PROTOC protoc)
+find_program(GRPC_CPP_PLUGIN grpc_cpp_plugin)
+
+# 生成protobuf和grpc代码
+set(PROTO_FILES mathtest.proto)
+set(PROTO_SRCS mathtest.pb.cc)
+set(PROTO_HDRS mathtest.pb.h)
+set(GRPC_SRCS mathtest.grpc.pb.cc)
+set(GRPC_HDRS mathtest.grpc.pb.h)
+
+add_custom_command(
+    OUTPUT ${PROTO_SRCS} ${PROTO_HDRS}
+    COMMAND ${PROTOC}
+    ARGS --cpp_out=. ${CMAKE_CURRENT_SOURCE_DIR}/mathtest.proto
+    DEPENDS ${PROTO_FILES}
+)
+
+add_custom_command(
+    OUTPUT ${GRPC_SRCS} ${GRPC_HDRS}
+    COMMAND ${PROTOC}
+    ARGS --grpc_out=. --plugin=protoc-gen-grpc=${GRPC_CPP_PLUGIN} ${CMAKE_CURRENT_SOURCE_DIR}/mathtest.proto
+    DEPENDS ${PROTO_FILES}
+)
+
+# 服务端
+add_executable(server server.cc ${PROTO_SRCS} ${GRPC_SRCS})
+target_link_libraries(server ${PROTOBUF_LIBRARIES} ${GRPC_LIBRARIES} grpc++_reflection dl)
+target_include_directories(server PRIVATE ${PROTOBUF_INCLUDE_DIRS} ${GRPC_INCLUDE_DIRS})
+
+# 客户端
+add_executable(client client.cc ${PROTO_SRCS} ${GRPC_SRCS})
+target_link_libraries(client ${PROTOBUF_LIBRARIES} ${GRPC_LIBRARIES} grpc++_reflection dl)
+target_include_directories(client PRIVATE ${PROTOBUF_INCLUDE_DIRS} ${GRPC_INCLUDE_DIRS})
+```
+
+### CMake编译步骤：
+```bash
+mkdir build
+cd build
+cmake ..
+make
+```
+
+## 运行程序
+
+### 1. 启动服务端
+```bash
+./server
+```
+输出：`Server listening on port: 0.0.0.0:5000`
+
+### 2. 启动客户端（另一个终端）
+```bash
+./client
+```
+输出：`Answer received: 5 * 10 = 50`
+
+## 常见问题
+
+1. **找不到grpc_cpp_plugin**
+   ```bash
+   sudo apt-get install libgrpc++-dev protobuf-compiler-grpc
+   ```
+
+2. **pkg-config找不到库**
+   ```bash
+   export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH
+   ```
+
+3. **链接错误**
+   确保gRPC库正确安装并且路径配置正确。

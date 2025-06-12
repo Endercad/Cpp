@@ -1,0 +1,40 @@
+// Protocol Buffers 语法版本声明
+// proto3 是目前推荐使用的版本，相比 proto2 更简洁
+syntax = "proto3";
+
+// Java包名选项，如果要生成Java代码时使用
+option java_package = "ex.grpc";
+
+// 包名定义，用于避免命名冲突
+// 在C++中会生成对应的命名空间 mathtest::
+package mathtest;
+
+// 定义gRPC服务接口
+// 这里定义了一个名为 MathTest 的服务
+service MathTest {
+    // 定义RPC方法：sendRequest
+    // 接收 MathRequest 类型的请求，返回 MathReply 类型的响应
+    // 这是一个简单的一元RPC调用（unary RPC）
+    rpc sendRequest (MathRequest) returns (MathReply) {}
+}
+
+// 定义请求消息结构
+// 包含客户端发送给服务端的数据
+message MathRequest {
+    int32 a = 1;    // 第一个操作数，数字1是字段标识符（不是默认值）
+    int32 b = 2;    // 第二个操作数，数字2是字段标识符（不是默认值）
+}
+
+// 定义响应消息结构  
+// 包含服务端返回给客户端的数据
+message MathReply {
+    int32 result = 1;   // 计算结果，数字1是字段标识符（不是默认值）
+} 
+
+//关键字说明：
+//rpc：定义远程过程调用（RPC）方法
+//returns：定义方法的返回类型
+//message：定义消息结构体
+//int32：定义32位整数类型
+//=1：定义字段标识符（不是默认值）
+//=2：定义字段标识符（不是默认值）
