@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/task_example.dir/examples/03_task.cpp.o -o task_example  -lpthread 

@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/scheduler_example.dir/examples/06_scheduler.cpp.o -o scheduler_example  -lpthread 

@@ -1,0 +1,105 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.20"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "cpp_coroutine_tutorial",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "async_example::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-async_example-Debug-5e87ec808547004f2c84.json",
+					"name" : "async_example",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "basic_coroutine::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-basic_coroutine-Debug-625317dd23829e54046c.json",
+					"name" : "basic_coroutine",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "channels_example::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-channels_example-Debug-8a8d5de868cf5e854865.json",
+					"name" : "channels_example",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "generator_example::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-generator_example-Debug-90fcfa0cb34a12a07bed.json",
+					"name" : "generator_example",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "scheduler_example::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-scheduler_example-Debug-49250c0dee3e9aec900a.json",
+					"name" : "scheduler_example",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "task_example::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-task_example-Debug-a8b42ef9b583a073d27d.json",
+					"name" : "task_example",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/cyh/Cpp/basic/Coroutine/build",
+		"source" : "/home/cyh/Cpp/basic/Coroutine"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

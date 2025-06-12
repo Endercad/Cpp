@@ -1,0 +1,32 @@
+[
+{
+  "directory": "/home/cyh/Cpp/basic/Coroutine/build",
+  "command": "/usr/bin/g++  -I/home/cyh/Cpp/basic/Coroutine/include -g -Wall -Wextra -std=c++20 -fcoroutines -std=gnu++20 -o CMakeFiles/basic_coroutine.dir/examples/01_basic_coroutine.cpp.o -c /home/cyh/Cpp/basic/Coroutine/examples/01_basic_coroutine.cpp",
+  "file": "/home/cyh/Cpp/basic/Coroutine/examples/01_basic_coroutine.cpp"
+},
+{
+  "directory": "/home/cyh/Cpp/basic/Coroutine/build",
+  "command": "/usr/bin/g++  -I/home/cyh/Cpp/basic/Coroutine/include -g -Wall -Wextra -std=c++20 -fcoroutines -std=gnu++20 -o CMakeFiles/generator_example.dir/examples/02_generator.cpp.o -c /home/cyh/Cpp/basic/Coroutine/examples/02_generator.cpp",
+  "file": "/home/cyh/Cpp/basic/Coroutine/examples/02_generator.cpp"
+},
+{
+  "directory": "/home/cyh/Cpp/basic/Coroutine/build",
+  "command": "/usr/bin/g++  -I/home/cyh/Cpp/basic/Coroutine/include -g -Wall -Wextra -std=c++20 -fcoroutines -std=gnu++20 -o CMakeFiles/task_example.dir/examples/03_task.cpp.o -c /home/cyh/Cpp/basic/Coroutine/examples/03_task.cpp",
+  "file": "/home/cyh/Cpp/basic/Coroutine/examples/03_task.cpp"
+},
+{
+  "directory": "/home/cyh/Cpp/basic/Coroutine/build",
+  "command": "/usr/bin/g++  -I/home/cyh/Cpp/basic/Coroutine/include -g -Wall -Wextra -std=c++20 -fcoroutines -std=gnu++20 -o CMakeFiles/async_example.dir/examples/04_async_operations.cpp.o -c /home/cyh/Cpp/basic/Coroutine/examples/04_async_operations.cpp",
+  "file": "/home/cyh/Cpp/basic/Coroutine/examples/04_async_operations.cpp"
+},
+{
+  "directory": "/home/cyh/Cpp/basic/Coroutine/build",
+  "command": "/usr/bin/g++  -I/home/cyh/Cpp/basic/Coroutine/include -g -Wall -Wextra -std=c++20 -fcoroutines -std=gnu++20 -o CMakeFiles/channels_example.dir/examples/05_channels.cpp.o -c /home/cyh/Cpp/basic/Coroutine/examples/05_channels.cpp",
+  "file": "/home/cyh/Cpp/basic/Coroutine/examples/05_channels.cpp"
+},
+{
+  "directory": "/home/cyh/Cpp/basic/Coroutine/build",
+  "command": "/usr/bin/g++  -I/home/cyh/Cpp/basic/Coroutine/include -g -Wall -Wextra -std=c++20 -fcoroutines -std=gnu++20 -o CMakeFiles/scheduler_example.dir/examples/06_scheduler.cpp.o -c /home/cyh/Cpp/basic/Coroutine/examples/06_scheduler.cpp",
+  "file": "/home/cyh/Cpp/basic/Coroutine/examples/06_scheduler.cpp"
+}
+]

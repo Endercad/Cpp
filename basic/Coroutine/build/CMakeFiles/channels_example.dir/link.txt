@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/channels_example.dir/examples/05_channels.cpp.o -o channels_example  -lpthread 
